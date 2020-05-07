@@ -20,7 +20,7 @@ class Scraper
     doc = Nokogiri::HTML(open(profile_url))
     {
 
-      :twitter => doc.css("a").select{|link| link['social-icon-container'] == "twitter",
+      :twitter => doc.css("a").select{|link| link['social_icon_container'] == "twitter",
       :linkedin => doc.css(".social_icon_container a").select{|a| a['href'].include?("linkedin.com")}['href'],
       :github => doc.css(".social_icon_container a").select{|a| a['href'].include?("github.com")}['href'],
       :blog => doc.css(".social_icon_container a").select{|a| a['href'].include?("flatironschool.com")}['href'],
