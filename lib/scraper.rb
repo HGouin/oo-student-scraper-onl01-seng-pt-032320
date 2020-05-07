@@ -19,8 +19,7 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
     {
-      news_links = page.css("a").select{|link| link['data-category'] == "news"}
-      news_links.each{|link| puts link['href'] }
+      
       :twitter => doc.css("a").select{|link| link['social-icon-container'] == "twitter",
       :linkedin => doc.css(".social_icon_container a").select{|a| a['href'].include?("linkedin.com")}['href'],
       :github => doc.css(".social_icon_container a").select{|a| a['href'].include?("github.com")}['href'],
