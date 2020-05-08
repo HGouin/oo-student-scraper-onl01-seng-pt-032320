@@ -34,16 +34,7 @@ class Scraper
         profile[:blog] = a['href']
       end
     end
-    {
-      :twitter => (doc.css(".social-icon-container a").find{|a| a['href'].include?("twitter.com")} || {})['href'],
-      :linkedin => (doc.css(".social-icon-container a").find{|a| a['href'].include?("linkedin.com")} || {})['href'],
-      :github => (doc.css(".social-icon-container a").find{|a| a['href'].include?("github.com")} || {})['href'],
-      :blog => (doc.css(".social-icon-container a").find{|a| a['href'].include?("flatironschool.com")} || {})['href'],
-
-      :profile_quote => doc.css("div.profile-quote").text,
-      :bio => doc.css("p").text
-
-    }
+    profile
   end
 
 end
