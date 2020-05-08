@@ -18,13 +18,31 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
+    links = doc.css(".social-icon-container a")
+    profile = {
+      :profile_quote => doc.css("div.profile-quote").text,
+      :bio => doc.css("p").text
+    }
+    links.each do |a|
+      if a['href'].include?("twitter.com")
+        profile[:twitter] = a['href']
+      elsif a['href'].include?("linkedin.com")
+        profile[:linkedin] = a['href']
+      elsif a['href'].include?("github.com")
+        profile[:github] = a['href']
+      else
+        profile[:blog] = a['href']
+      end
+    end
     {
       :twitter => (doc.css(".social-icon-container a").find{|a| a['href'].include?("twitter.com")} || {})['href'],
       :linkedin => (doc.css(".social-icon-container a").find{|a| a['href'].include?("linkedin.com")} || {})['href'],
       :github => (doc.css(".social-icon-container a").find{|a| a['href'].include?("github.com")} || {})['href'],
       :blog => (doc.css(".social-icon-container a").find{|a| a['href'].include?("flatironschool.com")} || {})['href'],
+
       :profile_quote => doc.css("div.profile-quote").text,
       :bio => doc.css("p").text
+
     }
   end
 
