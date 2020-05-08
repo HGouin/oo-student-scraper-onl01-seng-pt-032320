@@ -23,8 +23,8 @@ class Scraper
       :linkedin => (doc.css(".social-icon-container a").find{|a| a['href'].include?("linkedin.com")} || {})['href'],
       :github => (doc.css(".social-icon-container a").find{|a| a['href'].include?("github.com")} || {})['href'],
       :blog => (doc.css(".social-icon-container a").find{|a| a['href'].include?("flatironschool.com")} || {})['href'],
-      :profile_quote => doc.css("div.profile_quote").text,
-      :bio => doc.css("div.profile-quote").text
+      :profile_quote => doc.css("div.profile-quote").text,
+      :bio => doc.css("div.bio-block details-block").text
     }
   end
 
