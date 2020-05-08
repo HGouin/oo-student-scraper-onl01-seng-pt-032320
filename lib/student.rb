@@ -19,6 +19,7 @@ class Student
     @github = attributes_hash[:github]
     @linkedin = attributes_hash[:linkedin]
     @blog = attributes_hash[:blog]
+    @bio = attributes_hash[:bio]
   end
 
   def self.all
